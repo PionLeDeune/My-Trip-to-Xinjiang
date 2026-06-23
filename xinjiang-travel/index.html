@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北疆伊犁8日环线旅行记录 | 不含吐哈地区</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>北疆伊犁环线旅行见闻</h1>
+    <p class="sub-desc">全程8天自驾跟团轨迹展示 | 全程不含吐鲁番、哈密区域</p>
+  </div>
+</header>
+<div class="container" style="display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:30px;">
+  <!-- 左侧侧边栏 -->
+  <div class="left-side">
+    <div class="panel">
+      <h3>全程轨迹预览</h3>
+      <div id="mini-map"></div>
+      <div class="map-legend">
+        <span class="legend-item"><span class="color-block color-desert"></span>沙漠戈壁</span>
+        <span class="legend-item"><span class="color-block color-lake"></span>湖泊雪山</span>
+        <span class="legend-item"><span class="color-block color-grass"></span>草原牧区</span>
+        <span class="legend-item"><span class="color-block color-city"></span>城市道路</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>旅途总述</h3>
+      <p class="desc-text">本次8天北疆伊犁环线，沿S21、G30、G218等国道高速穿行，全程避开吐哈盆地。行程覆盖沙漠雅丹、高山湖泊、河谷草原三类核心地貌；全程2+1大巴出行，记录7家住宿酒店、团餐/线下门店/外卖三类饮食，交互式地图可查看每日公路、景点实拍与旅途随笔。</p>
+    </div>
+    <div class="panel">
+      <h3>每日行程简表</h3>
+      <div id="day-list"></div>
+    </div>
+  </div>
+  <!-- 右侧主内容区 -->
+  <div class="right-side">
+    <div class="panel">
+      <h3>完整交互式旅行地图（点击公路/点位查看景点详情）</h3>
+      <div id="main-map"></div>
+      <div class="map-legend">
+        <span class="legend-item"><span class="color-block color-desert"></span>沙漠戈壁</span>
+        <span class="legend-item"><span class="color-block color-lake"></span>湖泊雪山</span>
+        <span class="legend-item"><span class="color-block color-grass"></span>草原牧区</span>
+        <span class="legend-item"><span class="color-block color-city"></span>城市道路</span>
+      </div>
+    </div>
+    <!-- 酒店横向滚动 -->
+    <div class="panel">
+      <h3>沿途住宿（点击卡片查看房间实拍与评价）</h3>
+      <div class="scroll-wrap" id="hotel-scroll"></div>
+    </div>
+    <!-- 餐饮横向滚动 -->
+    <div class="panel">
+      <h3>沿途餐食分类：
+        <span class="tag-green">团餐</span>
+        <span class="tag-orange">线下门店自理</span>
+        <span class="tag-blue">外卖</span>
+      </h3>
+      <div class="scroll-wrap" id="food-scroll"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module">
+import { travelDays } from "./js/data.js";
+import { renderHotelScroll, renderFoodScroll } from "./js/scrollCard.js";
+import "./js/map.js";
+
+// 渲染酒店卡片
+renderHotelScroll(document.getElementById("hotel-scroll"));
+// 渲染餐饮卡片
+renderFoodScroll(document.getElementById("food-scroll"));
+
+// 渲染每日行程简表
+const dayBox = document.getElementById("day-list");
+travelDays.forEach(item=>{
+  const p = document.createElement("p");
+  p.style.margin="7px 0;font-size:14px";
+  p.innerHTML = `<b>${item.day}</b>：${item.title}`;
+  dayBox.appendChild(p);
+})
+</script>
+</body>
+</html>

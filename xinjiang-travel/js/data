@@ -1,0 +1,101 @@
+// 8天行程基础数据
+export const travelDays = [
+  { day:"D1", title:"深圳→乌鲁木齐→福海", spot:"S21沙漠公路", traffic:"飞机+2+1大巴", breakfast:false, lunch:false, dinner:"自理门店：福海渔村", roadId:0, hotelId:0 },
+  { day:"D2", title:"福海→喀纳斯→禾木", spot:"喀纳斯、月亮湾、卧龙湾、禾木村", traffic:"2+1大巴", breakfast:true, lunch:true, dinner:"团餐", roadId:1, hotelId:1 },
+  { day:"D3", title:"禾木→五彩滩→乌尔禾", spot:"禾木哈登观景台、五彩滩", traffic:"2+1大巴", breakfast:true, lunch:"团餐：冷水鱼", dinner:"外卖：乌尔禾亮亮烧烤", roadId:2, hotelId:2 },
+  { day:"D4", title:"乌尔禾→世界魔鬼城→博乐", spot:"世界魔鬼城雅丹", traffic:"2+1大巴", breakfast:true, lunch:"团餐：疆味手抓饭", dinner:"自理无店名", roadId:3, hotelId:3 },
+  { day:"D5", title:"博乐→赛里木湖→那拉提", spot:"赛里木湖环湖、果子沟、薰衣草庄园（赠航拍）", traffic:"2+1大巴", breakfast:true, lunch:true, dinner:"团餐：农家宴", roadId:4, hotelId:4 },
+  { day:"D6", title:"那拉提折返果子沟→精河（独库封路）", spot:"那拉提空中草原", traffic:"2+1大巴/商务车", breakfast:true, lunch:true, dinner:"自理门店：精河奔跑的肉饼子", roadId:5, hotelId:5 },
+  { day:"D7", title:"精河→天山天池→昌吉", spot:"天山天池", traffic:"2+1大巴", breakfast:true, lunch:true, dinner:"团餐：大美新疆宴", roadId:6, hotelId:6 },
+  { day:"D8", title:"乌鲁木齐→深圳", spot:"国际大巴扎", traffic:"飞机+大巴", breakfast:true, lunch:false, dinner:false, roadId:7, hotelId:-1 }
+];
+
+// 全程公路轨迹
+export const roadList = [
+  { id:0, day:1, name:"S21沙漠公路", route:"乌鲁木齐-福海", type:"desert", color:"#e6b800", desc:"古尔班通古特沙漠，金色戈壁路段" },
+  { id:1, day:2, name:"福海-乌伦古北岸-贾登峪-禾木山区路", route:"福海→喀纳斯→禾木", type:"lake-mountain", color:"#4096ff", desc:"高山湖泊、原始山林河谷" },
+  { id:2, day:3, name:"禾木-五彩滩快速路+G217+G3014奎阿高速", route:"禾木→布尔津→乌尔禾", type:"mix", color:"#e6b800", desc:"戈壁滩+额尔齐斯河谷混合地貌" },
+  { id:3, day:4, name:"G3014-G30-G3018-G219", route:"乌尔禾→博乐", type:"desert", color:"#e6b800", desc:"北疆戈壁荒漠高速" },
+  { id:4, day:5, name:"S205-G30-G3016-S12-G218", route:"博乐→赛湖→那拉提", type:"grass", color:"#a3d989", desc:"赛湖雪山+伊犁河谷草原" },
+  { id:5, day:6, name:"G218-S12墩那高速-G3016-G30连霍高速", route:"那拉提→果子沟→精河", type:"multi", color:"#a3d989", desc:"草原→雪山湖泊→戈壁分段地貌" },
+  { id:6, day:7, name:"G30连霍高速+S111省道", route:"精河→天山天池→昌吉", type:"mix", color:"#4096ff", desc:"戈壁高速+天池雪山湖区" },
+  { id:7, day:8, name:"乌鲁木齐城市快速路", route:"市区-大巴扎-机场", type:"city", color:"#999999", desc:"城市道路无景观高亮" }
+];
+
+// 酒店数据源
+export const hotelList = [
+  {
+    id:0, name:"福海格林东方酒店", area:"福海县", score:4,
+    coverImg:"img/hotel/fuhai-out.jpg",
+    roomOfficial:["img/hotel/fuhai-off1.jpg","img/hotel/fuhai-off2.jpg"],
+    roomUser:["img/hotel/fuhai-my1.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:1, name:"禾木禾美家园", area:"禾木村", score:3,
+    coverImg:"img/hotel/hemu-out.jpg",
+    roomOfficial:["img/hotel/hemu-off1.jpg"],
+    roomUser:["img/hotel/hemu-my1.jpg","img/hotel/hemu-my2.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:2, name:"乌尔禾海棠酒店", area:"乌尔禾镇", score:4,
+    coverImg:"img/hotel/wuerhe-out.jpg",
+    roomOfficial:["img/hotel/wuerhe-off1.jpg"],
+    roomUser:["img/hotel/wuerhe-my1.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:3, name:"博乐静泊大酒店", area:"博乐市", score:4.25,
+    coverImg:"img/hotel/bole-out.jpg",
+    roomOfficial:["img/hotel/bole-off1.jpg","img/hotel/bole-off2.jpg"],
+    roomUser:["img/hotel/bole-my1.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:4, name:"那拉提树夏民宿", area:"那拉提镇", score:3.5,
+    coverImg:"img/hotel/nalati-out.jpg",
+    roomOfficial:["img/hotel/nalati-off1.jpg"],
+    roomUser:["img/hotel/nalati-my1.jpg","img/hotel/nalati-my2.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:5, name:"精河迎宾馆", area:"精河县", score:5,
+    coverImg:"img/hotel/jinghe-out.jpg",
+    roomOfficial:["img/hotel/jinghe-off1.jpg","img/hotel/jinghe-off2.jpg"],
+    roomUser:["img/hotel/jinghe-my1.jpg","img/hotel/jinghe-my2.jpg","img/hotel/jinghe-my3.jpg"],
+    comment:"自行填写住宿体验评价"
+  },
+  {
+    id:6, name:"昌吉华东容锦国际酒店", area:"昌吉市", score:2.75,
+    coverImg:"img/hotel/changji-out.jpg",
+    roomOfficial:["img/hotel/changji-off1.jpg","img/hotel/changji-off2.jpg"],
+    roomUser:["img/hotel/changji-my1.jpg"],
+    comment:"自行填写住宿体验评价"
+  }
+];
+
+// 餐饮数据源
+export const foodList = [
+  {id:0, day:"D1", type:"orange", title:"福海渔村", desc:"落地第一晚湖边鱼馆自理", imgs:["img/food/fuhai-fish.jpg"], eval:""},
+  {id:1, day:"D2", type:"green", title:"D2全天团餐", desc:"早中晚统一大巴团餐，北疆家常菜", imgs:["img/food/group2.jpg"], eval:""},
+  {id:2, day:"D3", type:"green", title:"午餐冷水鱼（团餐）", desc:"布尔津特色额尔齐斯河冷水鱼", imgs:["img/food/cold-fish.jpg"], eval:""},
+  {id:3, day:"D3", type:"blue", title:"外卖：乌尔禾亮亮烧烤", desc:"夜宵烤羊肉、凉皮牛筋面", imgs:["img/food/bbq.jpg"], eval:""},
+  {id:4, day:"D4", type:"green", title:"午餐疆味手抓饭（团餐）", desc:"羊肉抓饭，本地重油风味", imgs:["img/food/rice.jpg"], eval:""},
+  {id:5, day:"D4", type:"orange", title:"D4晚间自由觅食", desc:"无固定门店，镇区小吃简餐", imgs:[], eval:""},
+  {id:6, day:"D5", type:"green", title:"晚餐农家宴（团餐）", desc:"伊犁河谷本地农家土菜宴席", imgs:["img/food/farm-feast.jpg"], eval:""},
+  {id:7, day:"D6", type:"orange", title:"精河奔跑的肉饼子", desc:"本地特色牛肉肉饼小店", imgs:["img/food/meat-pie.jpg"], eval:""},
+  {id:8, day:"D7", type:"green", title:"晚餐大美新疆宴（团餐）", desc:"昌吉综合新疆特色宴席", imgs:["img/food/xinjiang-feast.jpg"], eval:""}
+];
+
+// 景点点位（地图标记）
+export const spotList = [
+  { id:0, name:"S21沙漠公路", latlng:[45.3,87.6], type:"desert", color:"#e6b800", desc:"横穿古尔班通古特沙漠，一望无际金色戈壁，日落光影绝佳" },
+  { id:1, name:"喀纳斯三湾", latlng:[48.6,87.0], type:"lake-mountain", color:"#4096ff", desc:"月亮湾、卧龙湾、神仙湾，碧绿湖水搭配泰加林，北疆标志性水景" },
+  { id:2, name:"禾木村", latlng:[48.5,87.4], type:"lake-mountain", color:"#4096ff", desc:"原始木屋村落，哈登观景台可俯瞰整片白桦林村落全景" },
+  { id:3, name:"五彩滩", latlng:[47.8,88.1], type:"mix", color:"#e6b800", desc:"额尔齐斯河两岸彩色雅丹，日落时分岩层色彩层次丰富" },
+  { id:4, name:"世界魔鬼城", latlng:[46.1,85.1], type:"desert", color:"#e6b800", desc:"戈壁雅丹风蚀地貌，大风穿行岩石会发出呼啸声响" },
+  { id:5, name:"赛里木湖", latlng:[44.6,81.2], type:"lake-mountain", color:"#4096ff", desc:"大西洋最后一滴眼泪，环湖公路可多角度观赏雪山蓝湖，赠送定点航拍" },
+  { id:6, name:"那拉提空中草原", latlng:[43.4,83.3], type:"grass", color:"#a3d989", desc:"高山河谷草原，连绵草甸搭配雪山，昼夜温差极大" },
+  { id:7, name:"天山天池", latlng:[43.9,88.1], type:"lake-mountain", color:"#4096ff", desc:"博格达雪峰下高山湖泊，古典人文景观与自然山水结合" }
+];

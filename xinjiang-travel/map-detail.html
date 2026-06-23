@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>景点详情</title>
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>景点旅行记录</h1>
+    <p class="sub-desc">返回首页查看完整轨迹地图</p>
+  </div>
+</header>
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
+  <div class="panel">
+    <h2 class="detail-title" id="spot-name">景点名称</h2>
+    <div class="photo-gallery" id="spot-gallery"></div>
+    <h3>旅途见闻描述</h3>
+    <p class="desc-text" id="spot-desc"></p>
+  </div>
+</div>
+
+<script type="module">
+import { getUrlParam, lazyLoadImg } from "./js/util.js";
+import { spotList, roadList } from "./js/data.js";
+
+const spotId = getUrlParam("spotId");
+const roadId = getUrlParam("roadId");
+const nameDom = document.getElementById("spot-name");
+const galleryDom = document.getElementById("spot-gallery");
+const descDom = document.getElementById("spot-desc");
+
+if(spotId) {
+  const spot = spotList.find(s=>s.id == spotId);
+  nameDom.innerText = spot.name;
+  descDom.innerText = spot.desc;
+  // 渲染风景图（自行替换图片文件名）
+  const imgArr = ["img/scenery/demo1.jpg","img/scenery/demo2.jpg","img/scenery/demo3.jpg"];
+  imgArr.forEach(src=>{
+    const img = document.createElement("img");
+    img.src = src;
+    galleryDom.appendChild(img);
+  })
+  lazyLoadImg(galleryDom.querySelectorAll("img"));
+}
+if(roadId && !spotId) {
+  const road = roadList.find(r=>r.id == roadId);
+  nameDom.innerText = `D${road.day} ${road.name}`;
+  descDom.innerText = `途经线路：${road.route}\n地貌说明：${road.desc}`;
+}
+</script>
+</body>
+</html>

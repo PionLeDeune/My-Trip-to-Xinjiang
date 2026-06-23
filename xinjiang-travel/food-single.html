@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>餐食详情</title>
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
+  </div>
+</header>
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
+  <div class="panel">
+    <span id="food-tag" class="tag-green">D1</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">餐食名称</h2>
+    <p class="desc-text" id="food-desc" style="margin:10px 0;"></p>
+
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery"></div>
+
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-eval">待补充口味评价</p>
+  </div>
+</div>
+
+<script type="module">
+import { getUrlParam, getFoodTagClass, lazyLoadImg } from "./js/util.js";
+import { foodList } from "./js/data.js";
+
+const fid = getUrlParam("fid");
+const food = foodList.find(item=>item.id == fid);
+
+const tagDom = document.getElementById("food-tag");
+tagDom.className = getFoodTagClass(food.type);
+tagDom.innerText = food.day;
+
+document.getElementById("food-name").innerText = food.title;
+document.getElementById("food-desc").innerText = food.desc;
+document.getElementById("food-eval").innerText = food.eval || "暂无评价，可自行补充口感、分量、推荐度文字";
+
+// 菜品图片渲染
+food.imgs.forEach(src=>{
+  const img = document.createElement("img");
+  img.src = src;
+  document.getElementById("food-gallery").appendChild(img);
+})
+lazyLoadImg(document.querySelectorAll("img"));
+</script>
+</body>
+</html>
