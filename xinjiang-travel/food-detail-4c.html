@@ -3,35 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>酒店详情</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>餐食详情</title>
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>餐食详情</h1>
-    <p class="sub-desc">（只记录正餐，无早餐。早餐在酒店评价里）</p>
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
   </div>
 </header>
-<div class="container">
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
   <div class="panel">
-    <a class="back-btn" href="index.html">← 返回首页</a>
-    <h2 class="detail-title"><a class="food-title food-website" target="_blank" rel="noopener noreferrer"></a></h2>
-    <p>综合评分：<span class="food-score"></span> / 5</p>
-    <img class="food-cover" style="width:100%;border-radius:12px;margin:16px 0;">
+    <!--black smaller font saying D1 supper below-->
+    <div class="tag-black" style="margin-top:10px;">D4 6.12 晚餐</div>
+    <span id="food-tag" class="tag-orange">线下门店自理</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">博乐市 放牛记鲜切牛肉火锅</h2>
+    <h4 class="tag-black" style="margin-top:10px;">仿潮汕风，内地口味，有辣锅牛骨汤锅等。</h4>
+    <p class="desc-text" id="food-desc" style="margin:10px 0;">我们点了五花趾、雪花牛肉、牛筋丸。
+    </p>
 
-    <h3>本人用餐实拍</h3>
-    <div class="photo-gallery user-gallery"></div>
-
-    <h3>用餐体验评价</h3>
-    <p class="food-comment desc-text"></p>
-    <br>
-    <h3>早餐评价</h3>
-    <p class="breakfast-comment desc-text"></p>
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery"></div>
+    <br><br>
+    <h3>环境评价</h3>
+    <p class="desc-text" id="food-env-eval">普通火锅店环境，decent。</p>
+    <!--下面空两行-->
+    <br><br>
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-taste-eval">
+        牛肉切得没有广东的那么好，甚至不如贵州切的。但我感觉肉本身还是ok的，新疆的牛肉还是其他的做法好，估计这不是黄牛肉，不太适合打火锅。
+        有个槽点是，这家餐厅拿黄豆酱冒充沙茶酱，无语。特色点心还有糯玉米（味道偏甜）、葱油饼（膨胀空心的，够有特色，脆脆的）。
+    </p>
+    <br><br>
+    <h3>小故事</h3>
+    <p class="desc-text" id="little-story-during-meal">
+        7人组先行出发，20min后我在酒店洗完衣服打了车，但是派单太远了。于是我找了部电动车骑过去，还便宜两块，最后成功在酱料台join上他们。
+        后续还有博乐的hangout小故事，详情请点<a href="https://www.douban.com/note/1000000000/" target="_blank" rel="noopener noreferrer">这里</a>查看。
+    </p>
   </div>
+</div>
 
-  <!-- 大图弹窗容器 -->
+<!-- 大图弹窗容器 -->
   <div class="img-modal">
   <span class="img-close">×</span>
   <img id="bigImg" src="" alt="大图预览">

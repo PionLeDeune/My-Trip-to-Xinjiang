@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>餐食详情</title>
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
+  </div>
+</header>
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
+  <div class="panel">
+    <!--black smaller font saying D1 supper below-->
+    <div class="tag-black" style="margin-top:10px;">D1 6.9 晚餐</div>
+    <span id="food-tag" class="tag-orange">线下门店自理</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">福海 海福渔家</h2>
+    <h4 class="tag-black" style="margin-top:10px;">主打冷水鱼</h4>
+    <p class="desc-text" id="food-desc" style="margin:10px 0;">冷水鱼种类有五道黑、狗鱼等，做法以红烧、干炸、干煎为主。更有当地的特色黑蘑菇。
+    </p>
+
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery"></div>
+    <br><br>
+    <h3>环境评价</h3>
+    <p class="desc-text" id="food-env-eval">普通县城的那种比较大的、有点历史的饭店的装修风格，有包房</p>
+    <!--下面空两行-->
+    <br><br>
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-taste-eval">狗鱼不错，干炸五道黑也够香口，红烧梭罗鱼刺有点多。黑蘑菇第一口有点怪味，但是到后面就变好吃了。葱香花卷￥1/个，很大很大，味道也ok。</p>
+    <br><br>
+    <h3>小故事</h3>
+    <p class="desc-text" id="little-story-during-meal">这是我第一次“乱入”7人组，果然还是要脸皮厚啊哈哈哈。不过还有个原因是我年龄最小，她们也愿意照顾和接纳更年轻的“同学”。
+    </p>
+  </div>
+</div>
+
+<script type="module">
+import { getUrlParam, getFoodTagClass, lazyLoadImg } from "./js/util.js";
+import { foodList } from "./js/data.js";
+
+const fid = getUrlParam("fid");
+const food = foodList.find(item=>item.id == fid);
+
+const tagDom = document.getElementById("food-tag");
+tagDom.className = getFoodTagClass(food.type);
+tagDom.innerText = food.day;
+
+document.getElementById("food-name").innerText = food.title;
+document.getElementById("food-desc").innerText = food.desc;
+document.getElementById("food-env-eval").innerText = food.envEval || "暂无环境评价，可自行补充";
+document.getElementById("food-taste-eval").innerText = food.tasteEval || "暂无口味评价，可自行补充口感、分量、推荐度文字";
+
+// 菜品图片渲染
+food.imgs.forEach(src=>{
+  const img = document.createElement("img");
+  img.src = src;
+  document.getElementById("food-gallery").appendChild(img);
+})
+lazyLoadImg(document.querySelectorAll("img"));
+</script>
+</body>
+</html>

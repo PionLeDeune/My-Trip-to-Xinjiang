@@ -3,44 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北疆伊犁8日环线旅行记录 | 不含吐哈地区</title>
+<title>北疆8日跟团旅行记录</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>北疆伊犁环线旅行见闻</h1>
-    <p class="sub-desc">全程8天自驾跟团轨迹展示 | 全程不含吐鲁番、哈密区域</p>
+    <h1>北疆8日跟团旅行记录</h1>
+    <p class="sub-desc">全程8天跟团轨迹展示</p>
   </div>
 </header>
-<div class="container" style="display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:30px;">
+<div class="container content-grid">
   <!-- 左侧侧边栏 -->
   <div class="left-side">
     <div class="panel">
-      <h3>全程轨迹预览</h3>
-      <div id="mini-map"></div>
-      <div class="map-legend">
-        <span class="legend-item"><span class="color-block color-desert"></span>沙漠戈壁</span>
-        <span class="legend-item"><span class="color-block color-lake"></span>湖泊雪山</span>
-        <span class="legend-item"><span class="color-block color-grass"></span>草原牧区</span>
-        <span class="legend-item"><span class="color-block color-city"></span>城市道路</span>
-      </div>
-    </div>
-    <div class="panel">
       <h3>旅途总述</h3>
-      <p class="desc-text">本次8天北疆伊犁环线，沿S21、G30、G218等国道高速穿行，全程避开吐哈盆地。行程覆盖沙漠雅丹、高山湖泊、河谷草原三类核心地貌；全程2+1大巴出行，记录7家住宿酒店、团餐/线下门店/外卖三类饮食，交互式地图可查看每日公路、景点实拍与旅途随笔。</p>
+      <p class="desc-text">本次8天北疆伊犁环线，沿S21、G30、G218、G217等公路穿行。行程覆盖沙漠雅丹、高山湖泊、河谷草原三类核心地貌；全程2+1大巴和7座商务车出行，记录7家住宿酒店、团餐/线下门店/外卖三类饮食，交互式地图可查看每日公路、景点实拍与旅途随笔。</p>
     </div>
     <div class="panel">
       <h3>每日行程简表</h3>
       <div id="day-list"></div>
     </div>
   </div>
+  <!--左侧边栏占据页面总宽度40%，怎么弄? adding "width=xx%" is not valid-->
   <!-- 右侧主内容区 -->
   <div class="right-side">
     <div class="panel">
       <h3>完整交互式旅行地图（点击公路/点位查看景点详情）</h3>
-      <div id="main-map"></div>
+      <div id="main-map">
+
+      </div>
       <div class="map-legend">
         <span class="legend-item"><span class="color-block color-desert"></span>沙漠戈壁</span>
         <span class="legend-item"><span class="color-block color-lake"></span>湖泊雪山</span>
@@ -50,17 +43,197 @@
     </div>
     <!-- 酒店横向滚动 -->
     <div class="panel">
-      <h3>沿途住宿（点击卡片查看房间实拍与评价）</h3>
-      <div class="scroll-wrap" id="hotel-scroll"></div>
+      <h3>沿途住宿:</h3>
+      <div class="scroll-wrap" id="hotel-scroll">
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=0" data-imgsrc="img/hotel/fuhai-out.jpg" data-title="福海格林东方酒店" data-day="D1 6.9">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/fuhai-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D1 6.9</div>
+    <div class="small-card-sub" style="font-size:15px;">福海格林东方酒店</div>
+    <div class="small-card-note">评分 4.00/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=1" data-imgsrc="img/hotel/hemu-out.jpg" data-title="禾木禾美家园" data-day="D2 6.10">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/hemu-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D2 6.10</div>
+    <div class="small-card-sub" style="font-size:15px;">禾木禾美家园民宿</div>
+    <div class="small-card-note">评分 3.00/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=2" data-imgsrc="img/hotel/wuerhe-out.jpg" data-title="乌尔禾海棠酒店" data-day="D3 6.11">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/wuerhe-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D3 6.11</div>
+    <div class="small-card-sub" style="font-size:15px;">乌尔禾海棠酒店</div>
+    <div class="small-card-note">评分 4.25/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=3" data-imgsrc="img/hotel/bole-out.jpg" data-title="博乐静泊大酒店" data-day="D4 6.12">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/bole-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D4 6.12</div>
+    <div class="small-card-sub" style="font-size:15px;">博乐静泊大酒店</div>
+    <div class="small-card-note">评分 4.25/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=4" data-imgsrc="img/hotel/nalati-out.jpg" data-title="那拉提树夏民宿" data-day="D5 6.13">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/nalati-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D5 6.13</div>
+    <div class="small-card-sub" style="font-size:15px;">那拉提树夏民宿</div>
+    <div class="small-card-note">评分 3.50/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=5" data-imgsrc="img/hotel/jinghe-out.jpg" data-title="精河迎宾馆" data-day="D6 6.14">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/jinghe-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D6 6.14</div>
+    <div class="small-card-sub" style="font-size:15px;">精河迎宾馆</div>
+    <div class="small-card-note">评分 4.95/5</div>
+  </div>
+</a>
+<a class="small-card" style="cursor:pointer;text-decoration:none;" href="hotel-single.html?hid=6" data-imgsrc="img/hotel/changji-out.jpg" data-title="昌吉华东容锦国际酒店" data-day="D7 6.15">
+  <div class="small-card-thumb" style="background-image:url('img/hotel/changji-out.jpg');height:50%"></div>
+  <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+    <div class="small-card-title">D7 6.15</div>
+    <div class="small-card-sub" style="font-size:15px;">昌吉华东容锦国际酒店</div>
+    <div class="small-card-note">评分 2.75/5</div>
+  </div>
+</a>
+      </div>
     </div>
-    <!-- 餐饮横向滚动 -->
-    <div class="panel">
-      <h3>沿途餐食分类：
+    <!-- 餐饮横向滚动,保持餐饮panel宽度不变 -->
+    <div class="panel food-panel">
+      <h3>沿途正餐:
         <span class="tag-green">团餐</span>
         <span class="tag-orange">线下门店自理</span>
         <span class="tag-blue">外卖</span>
       </h3>
-      <div class="scroll-wrap" id="food-scroll"></div>
+      <div class="scroll-wrap" id="food-scroll">
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-1c.html" data-imgsrc="img/food/1c.jpg" data-title="福海渔村" data-tag="线下门店自理" data-day="D1 6.9 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/1c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D1 6.9 晚餐</div>
+            <span class="tag-orange">线下门店自理</span>
+            <div class="small-card-sub" style="font-size:15px;">海福渔家</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-2b.html" data-imgsrc="img/food/2b.jpg" data-title="喀纳斯贾登峪游客中心美食城" data-tag="团餐" data-day="D2 6.10 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/2b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D2 6.10 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">喀纳斯美食城</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-2c.html" data-imgsrc="img/food/2c.jpg" data-title="禾木山庄可爱的新疆" data-tag="团餐" data-day="D2 6.10 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/2c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D2 6.10 晚餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">禾木可爱的新疆</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-3b.html" data-imgsrc="img/food/3b.jpg" data-title="禾木村冷水鱼" data-tag="团餐" data-day="D3 6.11 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/3b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D3 6.11 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">禾木村冷水鱼</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-3c.html" data-imgsrc="img/food/3c.jpg" data-title="布尔津公路川湘菜馆" data-tag="团餐" data-day="D3 6.11 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/3c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D3 6.11 晚餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">布尔津公路川菜馆</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-3d.html" data-imgsrc="img/food/3d.jpg" data-title="乌尔禾烤肉凉皮" data-tag="外卖" data-day="D3 6.11 宵夜">
+          <div class="small-card-thumb" style="background-image:url('img/food/3d.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D3 6.11 宵夜</div>
+            <span class="tag-blue">外卖</span>
+            <div class="small-card-sub" style="font-size:15px;">乌尔禾烤肉凉皮</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-4b.html" data-imgsrc="img/food/4b.jpg" data-title="乌尔禾羊拐抓饭" data-tag="团餐" data-day="D4 6.12 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/4b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D4 6.12 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">乌尔禾羊拐抓饭</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-4c.html" data-imgsrc="img/food/4c.jpg" data-title="博乐牛肉火锅" data-tag="线下门店自理" data-day="D4 6.12 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/4c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D4 6.12 晚餐</div>
+            <span class="tag-orange">线下门店自理</span>
+            <div class="small-card-sub" style="font-size:15px;">博乐牛肉火锅</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-5b.html" data-imgsrc="img/food/5b.jpg" data-title="霍城特色菜" data-tag="团餐" data-day="D5 6.13 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/5b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D5 6.13 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">霍城某餐厅</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-5c.html" data-imgsrc="img/food/5c.jpg" data-title="那拉提疆火1" data-tag="团餐" data-day="D5 6.13 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/5c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">
+              D5 6.13 晚餐
+            </div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">那拉提疆火</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-5c.html" data-imgsrc="img/food/5c.jpg" data-title="那拉提疆火" data-tag="团餐" data-day="D6 6.14 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/5c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D6 6.14 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">那拉提疆火</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-6c.html" data-imgsrc="img/food/6c.jpg" data-title="精河奔跑的肉饼子" data-tag="线下门店自理" data-day="D6 6.14 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/6c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D6 6.14 晚餐</div>
+            <span class="tag-orange">线下门店自理</span>
+            <div class="small-card-sub" style="font-size:15px;">精河奔跑的肉饼子</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-7b.html" data-imgsrc="img/food/7b.jpg" data-title="天山天池脚下的农庄" data-tag="团餐" data-day="D7 6.15 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/7b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D7 6.15 午餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">天池下的农庄</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-7c.html" data-imgsrc="img/food/7c.jpg" data-title="昌吉市大美新疆宴" data-tag="团餐" data-day="D7 6.15 晚餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/7c.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D7 6.15 晚餐</div>
+            <span class="tag-green">团餐</span>
+            <div class="small-card-sub" style="font-size:15px;">昌吉大美新疆宴</div>
+          </div>
+        </a>
+        <a class="small-card" style="cursor:pointer;text-decoration:none;" href="food-detail-8b.html" data-imgsrc="img/food/8b.jpg" data-title="乌鲁木齐天山万科阿咔丝亚" data-tag="线下门店自理" data-day="D8 6.16 午餐">
+          <div class="small-card-thumb" style="background-image:url('img/food/8b.jpg'); height:50%;"></div>
+          <div class="small-card-content" style="height:50%;padding:12px;display:flex;flex-direction:column;gap:4px;">
+            <div class="small-card-title">D8 6.16 午餐</div>
+            <span class="tag-orange">线下门店自理</span>
+            <div class="small-card-sub" style="font-size:15px;">乌市商场融合餐厅</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </div>

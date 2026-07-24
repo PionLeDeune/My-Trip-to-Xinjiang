@@ -1,37 +1,46 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>酒店详情</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>餐食详情</title>
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>餐食详情</h1>
-    <p class="sub-desc">（只记录正餐，无早餐。早餐在酒店评价里）</p>
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
   </div>
 </header>
-<div class="container">
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
   <div class="panel">
-    <a class="back-btn" href="index.html">← 返回首页</a>
-    <h2 class="detail-title"><a class="food-title food-website" target="_blank" rel="noopener noreferrer"></a></h2>
-    <p>综合评分：<span class="food-score"></span> / 5</p>
-    <img class="food-cover" style="width:100%;border-radius:12px;margin:16px 0;">
+    <!--black smaller font saying D1 supper below-->
+    <div class="tag-black" style="margin-top:10px;">D5 6.13 晚餐 & D6 6.14 午餐</div>
+    <span id="food-tag" class="tag-green">团餐</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">那拉提镇 疆火盛宴特色美食</h2>
+    <h4 class="tag-black" style="margin-top:10px;"></h4>
+    <p class="desc-text" id="food-desc" style="margin:10px 0;">
+        吃到了哈萨克族特色美食包尔萨克——炸过的抱枕状发面团配着果酱或咸菜。
+        还有酥酥的改良版烤包子，刷蛋液加了酥皮
+        然後導游說這家餐館還有馬肉拼盤，但是我們沒有點，因為幾個隊友不想吃。
+        About馬肉，小故事點<a href="nalati.html">這裏</a>
+    </p>
 
-    <h3>本人用餐实拍</h3>
-    <div class="photo-gallery user-gallery"></div>
-
-    <h3>用餐体验评价</h3>
-    <p class="food-comment desc-text"></p>
-    <br>
-    <h3>早餐评价</h3>
-    <p class="breakfast-comment desc-text"></p>
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery"></div>
+    <br><br>
+    <h3>环境评价</h3>
+    <p class="desc-text" id="food-env-eval">在一个酒店旁边（至今不明白为什么不给我们安排这个酒店），環境還可以，兩層樓。</p>
+    <!--下面空两行-->
+    <br><br>
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-taste-eval">整體味道還可以。魚刺多。羊肉餡烤包子容易發膩，有位隊友甚至在烤包子裏面發現了一根頭髮</p>
   </div>
+</div>
 
-  <!-- 大图弹窗容器 -->
+<!-- 大图弹窗容器 -->
   <div class="img-modal">
   <span class="img-close">×</span>
   <img id="bigImg" src="" alt="大图预览">

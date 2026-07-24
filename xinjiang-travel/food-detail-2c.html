@@ -3,35 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>酒店详情</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>餐饮详情</title>
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>餐食详情</h1>
-    <p class="sub-desc">（只记录正餐，无早餐。早餐在酒店评价里）</p>
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
   </div>
 </header>
-<div class="container">
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
   <div class="panel">
-    <a class="back-btn" href="index.html">← 返回首页</a>
-    <h2 class="detail-title"><a class="food-title food-website" target="_blank" rel="noopener noreferrer"></a></h2>
-    <p>综合评分：<span class="food-score"></span> / 5</p>
-    <img class="food-cover" style="width:100%;border-radius:12px;margin:16px 0;">
-
-    <h3>本人用餐实拍</h3>
-    <div class="photo-gallery user-gallery"></div>
-
-    <h3>用餐体验评价</h3>
-    <p class="food-comment desc-text"></p>
-    <br>
-    <h3>早餐评价</h3>
-    <p class="breakfast-comment desc-text"></p>
+    <!--black smaller font saying D1 supper below-->
+    <div class="tag-black" style="margin-top:10px;">D2 6.10 晚餐</div>
+    <span id="food-tag" class="tag-green">团餐</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">禾木山庄 可爱的新疆·丝路餐厅</h2>
+    <h4 class="tag-black" style="margin-top:10px;">新疆特色菜: 大盘鸡、羊肉汤、冷水鱼etc.</h4>
+    <br><br>
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery">
+      <!--图片放这里-->
+    </div>
+    <br><br>
+    <h3>环境评价</h3>
+    <p class="desc-text" id="food-env-eval">
+      餐厅的装修非常有格调，外观（整个村都像）和内装都很像欧洲的度假小木屋，虽然不大但是氛围很好。门口有个吧台，应该是做咖啡和啤酒的。
+      吃饭大厅和吧台中间有个壁炉。洗手间在地下室，味道和格局有点像我在英国峰区住过的民宿，跟房子里的仓库一个味。</p>
+    <!--下面空两行-->
+    <br><br>
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-taste-eval">
+      鱼的刺有点多，导游还请我们喝了乌苏白啤, 队友们说比在深圳喝到的乌苏好喝很多, 尝起来杂醇也少
+    </p>
+    <br><br>
+    <h3>小故事</h3>
+    <p class="desc-text" id="little-story-during-meal" style="font:14px '宋体';">
+      我们到禾木山庄的民宿的时候已经是22点多了（因为喀纳斯花了太多时间）。然后导游就急急忙忙让我们赶快check-in，就马不停蹄地喊我们出来吃饭。
+      结果我们跟着导游兜来兜去找餐厅，然而导游数漏了那两个01年的小姐姐没出来一起。我，一个独行侠开始发力，在群里call她们并共享了位置，她们在我的指引下虽迟但到。
+      她们两个一进来，我不知怎么回事嗌了一声“还不快谢谢我”嗌完我们在场的人都笑了哈哈哈，当然她们也道谢了，嘿嘿。     
+    </p>
   </div>
+</div>
 
-  <!-- 大图弹窗容器 -->
+<!-- 大图弹窗容器 -->
   <div class="img-modal">
   <span class="img-close">×</span>
   <img id="bigImg" src="" alt="大图预览">

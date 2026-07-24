@@ -3,35 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>酒店详情</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<title>餐食详情</title>
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>餐食详情</h1>
-    <p class="sub-desc">（只记录正餐，无早餐。早餐在酒店评价里）</p>
+    <h1>沿途餐食记录</h1>
+    <p class="sub-desc">团餐/门店/外卖完整实拍与口味点评</p>
   </div>
 </header>
-<div class="container">
+<div class="container" style="margin-top:30px;">
+  <a href="index.html" class="back-btn">← 返回首页</a>
   <div class="panel">
-    <a class="back-btn" href="index.html">← 返回首页</a>
-    <h2 class="detail-title"><a class="food-title food-website" target="_blank" rel="noopener noreferrer"></a></h2>
-    <p>综合评分：<span class="food-score"></span> / 5</p>
-    <img class="food-cover" style="width:100%;border-radius:12px;margin:16px 0;">
+    <div class="tag-black" style="margin-top:10px;">D4 6.12 午餐</div>
+    <span id="food-tag" class="tag-green">团餐</span>
+    <h2 class="detail-title" id="food-name" style="margin-top:10px;">乌尔禾区 阿吾丹的烤羊·新疆菜·羊拐抓饭</h2>
+    <h4 class="tag-black" style="margin-top:10px;">羊拐抓饭</h4>
+    <p class="desc-text" id="food-desc" style="margin:10px 0;">羊拐是羊小腿关节肉。有一些小菜，拍黄瓜、酸萝卜、拌豆芽、皮牙子。
+    </p>
 
-    <h3>本人用餐实拍</h3>
-    <div class="photo-gallery user-gallery"></div>
-
-    <h3>用餐体验评价</h3>
-    <p class="food-comment desc-text"></p>
-    <br>
-    <h3>早餐评价</h3>
-    <p class="breakfast-comment desc-text"></p>
+    <h3>菜品实拍照片</h3>
+    <div class="photo-gallery" id="food-gallery"></div>
+    <br><br>
+    <h3>环境评价</h3>
+    <p class="desc-text" id="food-env-eval">餐厅做团餐和外卖，装修很有新疆明艳的特色。外面有卖水果的，杏子￥20/kg，红白大小同价，我买了7块钱的杏子。
+      吃饭尾声还有歌舞表演，就是老人家都挡在前面拍照，呵呵。</p>
+    <!--下面空两行-->
+    <br><br>
+    <h3>个人口味评价</h3>
+    <p class="desc-text" id="food-taste-eval">羊拐吃得很爽，膻味几乎没有，口感也很好。饭里的新疆特色黄胡萝卜比普通胡萝卜更甜，詹哥为了吃这个更是要多了一份饭。</p>
+    <br><br>
+    <h3>小故事</h3>
+    <p class="desc-text" id="little-story-during-meal">我们团的有一位老人家当天吃斋，就让导游问有没有谁想吃多一个羊腿，我于是接下了这个“重任”，吃得很爽，嘿嘿嘿！</p>
   </div>
+</div>
 
-  <!-- 大图弹窗容器 -->
+<!-- 大图弹窗容器 -->
   <div class="img-modal">
   <span class="img-close">×</span>
   <img id="bigImg" src="" alt="大图预览">

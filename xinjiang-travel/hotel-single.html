@@ -4,66 +4,116 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>酒店详情</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>住宿详情</h1>
-    <p class="sub-desc">全部7家住宿完整实拍与个人评价</p>
+    <h1>酒店详情</h1>
+    <p class="sub-desc">入住记录与实拍图集</p>
   </div>
 </header>
-<div class="container" style="margin-top:30px;">
-  <a href="index.html" class="back-btn">← 返回首页</a>
+<div class="container">
   <div class="panel">
-    <h2 class="detail-title" id="hotel-name">酒店名称</h2>
-    <div id="hotel-score"></div>
-    <p style="margin:8px 0 20px;color:#555;" id="hotel-area">所在地</p>
+    <a class="back-btn" href="index.html">← 返回首页</a>
+    <h2 class="detail-title"><a class="hotel-title hotel-website" target="_blank" rel="noopener noreferrer"></a></h2>
+    <p>综合评分：<span class="hotel-score"></span> / 5</p>
+    <img class="hotel-cover" style="width:100%;border-radius:12px;margin:16px 0;">
 
-    <h3>酒店外观实拍</h3>
-    <div class="photo-gallery" id="cover-gallery"></div>
+    <h3>本人入住实拍</h3>
+    <div class="photo-gallery user-gallery"></div>
 
-    <h3>官方房型图库</h3>
-    <div class="photo-gallery" id="official-gallery"></div>
-
-    <h3>本人实拍房间照片</h3>
-    <div class="photo-gallery" id="user-gallery"></div>
-
-    <h3>个人住宿评价</h3>
-    <p class="desc-text" id="hotel-comment"></p>
+    <h3>入住体验评价</h3>
+    <p class="hotel-comment desc-text"></p>
+    <br>
+    <h3>早餐评价</h3>
+    <p class="breakfast-comment desc-text"></p>
   </div>
+
+  <!-- 大图弹窗容器 -->
+  <div class="img-modal">
+  <span class="img-close">×</span>
+  <img id="bigImg" src="" alt="大图预览">
+</div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- 关键：添加 type="module" 才能使用 import -->
 <script type="module">
-import { getUrlParam, renderScore, lazyLoadImg } from "./js/util.js";
 import { hotelList } from "./js/data.js";
 
-const hid = getUrlParam("hid");
-const hotel = hotelList.find(item=>item.id == hid);
+// 大图预览函数
+const modal = document.querySelector('.img-modal');
+const bigImg = document.getElementById('bigImg');
+const closeBtn = document.querySelector('.img-close');
 
-document.getElementById("hotel-name").innerText = hotel.name;
-document.getElementById("hotel-area").innerText = `📍 ${hotel.area}`;
-document.getElementById("hotel-score").innerHTML = renderScore(hotel.score);
-document.getElementById("hotel-comment").innerText = hotel.comment;
-
-// 外观图
-const coverImg = document.createElement("img");
-coverImg.src = hotel.coverImg;
-document.getElementById("cover-gallery").appendChild(coverImg);
-
-// 官方房间图
-hotel.roomOfficial.forEach(src=>{
-  const img = document.createElement("img");
-  img.src = src;
-  document.getElementById("official-gallery").appendChild(img);
+// 打开大图
+window.openBigImg = function(src) {
+  bigImg.src = src;
+  modal.classList.add('show');
+}
+// 关闭大图
+function closeModal() {
+  modal.classList.remove('show');
+}
+closeBtn.onclick = closeModal;
+// 点击黑色背景也能关闭
+modal.onclick = (e) => {
+  if(e.target === modal) closeModal();
+}
+// ESC键关闭
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeModal();
 })
-// 个人实拍图
-hotel.roomUser.forEach(src=>{
-  const img = document.createElement("img");
-  img.src = src;
-  document.getElementById("user-gallery").appendChild(img);
-})
-lazyLoadImg(document.querySelectorAll("img"));
+
+// 打印调试信息，F12控制台可查看
+console.log("全部酒店数据", hotelList);
+const params = new URLSearchParams(location.search);
+const hid = Number(params.get("hid"));
+console.log("当前获取hid参数：", hid);
+
+const currHotel = hotelList.find(h => h.id === hid);
+console.log("匹配到的酒店数据：", currHotel);
+
+if (!currHotel) {
+  document.querySelector(".container").innerHTML = `
+    <div class="panel">
+      <h2>未找到该酒店，请检查链接hid参数</h2>
+      <p>当前hid：${hid}</p>
+      <a class="back-btn" href="index.html">返回首页</a>
+    </div>
+  `;
+} else {
+  // 填充文字
+  const hotelTitleLink = document.querySelector(".hotel-website");
+  hotelTitleLink.textContent = currHotel.name;
+  hotelTitleLink.href = currHotel.tripWebsite;
+  hotelTitleLink.target = "_blank";
+  hotelTitleLink.rel = "noopener noreferrer";
+
+  document.querySelector(".hotel-score").textContent = currHotel.score.toFixed(2);
+  document.querySelector(".hotel-comment").textContent = currHotel.comment;
+  document.querySelector(".breakfast-comment").textContent = currHotel.breakfast;
+
+  // 封面图
+  const coverImg = document.querySelector(".hotel-cover");
+  coverImg.src = currHotel.coverImg;
+  coverImg.onerror = () => console.log("封面图片加载失败：", currHotel.coverImg);
+
+  // 个人实拍图库
+  const userWrap = document.querySelector(".user-gallery");
+  if (currHotel.roomUser && currHotel.roomUser.length > 0) {
+    userWrap.innerHTML = currHotel.roomUser.map(imgSrc => `
+      <img loading="lazy" src="${imgSrc}" alt="本人实拍" onclick="openBigImg('${imgSrc}')" onerror="console.log('图缺失：${imgSrc}')">
+    `).join("");
+  } else if(hid === 4){
+    userWrap.innerHTML = "<p>不记得拍照了捏~但是上面那个链接页面展示的不是我们住的那栋楼！我们那栋楼在官方展示页的背后</p>";
+  } else {
+    userWrap.innerHTML = "<p>不记得拍照了捏~</p>";
+  }
+  userWrap.style.marginBottom = "20px"; // 给“本人入住实拍”部分增加底部间距
+}
 </script>
 </body>
 </html>
